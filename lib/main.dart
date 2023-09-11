@@ -36,14 +36,13 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.primary,
-          title: Center(
-            child: Text(
-              widget.title,
-              style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                    color: Theme.of(context).colorScheme.onPrimary,
-                  ),
-            ),
+          title: Text(
+            widget.title,
+            style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                  color: Theme.of(context).colorScheme.onPrimary,
+                ),
           ),
+          centerTitle: true,
           actions: <Widget>[
             IconButton(
                 icon: Icon(Icons.menu,
