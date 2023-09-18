@@ -2,14 +2,9 @@ import "package:flutter/material.dart";
 import "package:provider/provider.dart";
 import "home_page.dart";
 
-class AddTodo extends StatefulWidget {
+class AddTodo extends StatelessWidget {
   const AddTodo({super.key});
 
-  @override
-  State<AddTodo> createState() => _AddTodoState();
-}
-
-class _AddTodoState extends State<AddTodo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,19 +32,14 @@ class _AddTodoState extends State<AddTodo> {
   }
 }
 
-class AddTodoBody extends StatefulWidget {
-  const AddTodoBody({super.key});
+class AddTodoBody extends StatelessWidget {
+  AddTodoBody({super.key});
 
-  @override
-  State<AddTodoBody> createState() => _AddTodoBodyState();
-}
-
-class _AddTodoBodyState extends State<AddTodoBody> {
   final textController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    final todoModel = Provider.of<TodoModel>(context, listen: false);
+    final todoModel = context.read<TodoModel>();
     return Padding(
       padding: const EdgeInsets.all(12),
       child: Column(children: [

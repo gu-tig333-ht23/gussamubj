@@ -2,21 +2,18 @@ import "package:flutter/material.dart";
 import "package:provider/provider.dart";
 import "add_todo.dart";
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  void navigateToAddTodo() {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => AddTodo()));
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final todoModel = Provider.of<TodoModel>(context);
+    void navigateToAddTodo() {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => AddTodo()));
+    }
+
+    final todoModel = context.watch<TodoModel>();
+
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.primary,
@@ -66,14 +63,9 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class TodoList extends StatefulWidget {
+class TodoList extends StatelessWidget {
   TodoList({super.key});
 
-  @override
-  State<TodoList> createState() => _TodoListState();
-}
-
-class _TodoListState extends State<TodoList> {
   @override
   Widget build(BuildContext context) {
     final todoModel = Provider.of<TodoModel>(context);
