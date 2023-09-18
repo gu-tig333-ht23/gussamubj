@@ -26,6 +26,7 @@ class HomePage extends StatelessWidget {
           ),
           centerTitle: true,
           actions: <Widget>[
+            // Meny för att välja filter
             PopupMenuButton<FilterChoice>(
               icon: Icon(Icons.menu,
                   color: Theme.of(context).colorScheme.onPrimary),
@@ -54,9 +55,9 @@ class HomePage extends StatelessWidget {
       body: Center(
         child: TodoList(),
       ),
+      // Knapp i nedre högra hörnet på startsidan som navigerar till den andra sidan
       floatingActionButton: FloatingActionButton(
         onPressed: navigateToAddTodo,
-        tooltip: '',
         backgroundColor: Theme.of(context).colorScheme.primary,
         child: Icon(Icons.add, color: Theme.of(context).colorScheme.onPrimary),
       ),
@@ -73,6 +74,7 @@ class TodoList extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(12),
       child: ListView.builder(
+        // Skapar ett card för varje key-value-pair i den filtrerade TodoModel.todos
         itemCount: todoModel.todosFiltered.length,
         itemBuilder: (context, index) {
           var todoEntry = todoModel.todosFiltered.entries.elementAt(index);

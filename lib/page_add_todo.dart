@@ -5,6 +5,7 @@ import "todo_model.dart";
 class AddTodo extends StatelessWidget {
   const AddTodo({super.key});
 
+  // Root på sidan där nya todos läggs till
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,6 +44,7 @@ class AddTodoBody extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(12),
       child: Column(children: [
+        // Här skrivs en ny todo in
         TextField(
           decoration: InputDecoration(
             hintText: 'Something to do',
@@ -51,6 +53,7 @@ class AddTodoBody extends StatelessWidget {
           controller: textController,
         ),
         const SizedBox(height: 12),
+        // Knapp för att skicka texten
         ElevatedButton(
           onPressed: () {
             if (textController.text.trim().isNotEmpty) {
