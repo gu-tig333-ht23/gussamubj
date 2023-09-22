@@ -15,6 +15,7 @@ class HomePage extends StatelessWidget {
 
     final todoModel = context.watch<TodoModel>();
 
+    // Root på startsidan
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.primary,
@@ -71,38 +72,37 @@ class TodoList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final todoModel = Provider.of<TodoModel>(context);
+    todoModel.getTodos;
     return Padding(
       padding: const EdgeInsets.all(12),
       child: ListView.builder(
         // Skapar ett card för varje key-value-pair i den filtrerade TodoModel.todos
         itemCount: todoModel.todosFiltered.length,
         itemBuilder: (context, index) {
-          var todoEntry = todoModel.todosFiltered.entries.elementAt(index);
+          var todoEntry = todoModel.todosFiltered.elementAt(index);
           return Card(
-            key: ValueKey(todoEntry.key),
+            key: ValueKey(todoEntry.title),
             elevation: 3,
             child: Padding(
               padding: const EdgeInsets.all(15),
               child: Row(
                 children: [
                   Checkbox(
-                    value: todoEntry.value,
-                    onChanged: (value) =>
-                        {todoModel.updateTodo(todoEntry.key, value)},
+                    value: todoEntry.done,
+                    onChanged: (_) => {todoModel.updateTodo(todoEntry)},
                   ),
                   const SizedBox(width: 12),
                   Text(
-                    todoEntry.key,
+                    todoEntry.title,
                     style: Theme.of(context).textTheme.titleMedium!.copyWith(
                         color: Theme.of(context).colorScheme.onSurface,
-                        decoration: todoEntry.value
-                            ? TextDecoration.lineThrough
-                            : null),
+                        decoration:
+                            todoEntry.done ? TextDecoration.lineThrough : null),
                   ),
                   const Spacer(),
                   IconButton(
                     icon: Icon(Icons.remove_circle),
-                    onPressed: () => {todoModel.removeTodo(todoEntry.key)},
+                    onPressed: () => {todoModel.removeTodo(todoEntry)},
                   ),
                 ],
               ),

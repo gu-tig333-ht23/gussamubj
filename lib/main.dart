@@ -3,12 +3,17 @@ import "package:provider/provider.dart";
 import "page_home.dart";
 import "todo_model.dart";
 
-void main() => runApp(
-      ChangeNotifierProvider(
-        create: (context) => TodoModel(),
-        child: MyApp(),
-      ),
-    );
+void main() async {
+  final todoModel = TodoModel();
+  await todoModel.getTodos();
+
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => todoModel,
+      child: MyApp(),
+    ),
+  );
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
