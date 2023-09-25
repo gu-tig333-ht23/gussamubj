@@ -76,7 +76,7 @@ class TodoList extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(12),
       child: ListView.builder(
-        // Skapar ett card för varje key-value-pair i den filtrerade TodoModel.todos
+        // Skapar ett card för varje objekt i den filtrerade TodoModel.todos
         itemCount: todoModel.todosFiltered.length,
         itemBuilder: (context, index) {
           var todoEntry = todoModel.todosFiltered.elementAt(index);
